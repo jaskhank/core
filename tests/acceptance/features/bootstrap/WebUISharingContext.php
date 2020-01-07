@@ -149,8 +149,18 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Given last created public link is added to created-public-links-list
+	 *
+	 * @return void
+	 */
+	public function userHasAddedLastPublicLinkToListOfCreatedPublicLinks() {
+		$linkName = (string) $this->featureContext->getLastShareData()->data[0]->name;
+		$linkUrl = (string) $this->featureContext->getLastShareData()->data[0]->url;
+		$this->addToListOfCreatedPublicLinks($linkName, $linkUrl);
+	}
+
+	/**
 	 * @When /^the user shares (?:file|folder) "([^"]*)" with (?:(remote|federated)\s)?user "([^"]*)" using the webUI$/
-	 * @Given /^the user has shared (?:file|folder) "([^"]*)" with (?:(remote|federated)\s)?user "([^"]*)" using the webUI$/
 	 *
 	 * @param string $folder
 	 * @param string $remote
@@ -330,7 +340,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 
 	/**
 	 * @When the user shares file/folder :folder with group :group using the webUI
-	 * @Given the user has shared file/folder :folder with group :group using the webUI
 	 *
 	 * @param string $folder
 	 * @param string $group
@@ -441,7 +450,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Given the user has renamed the public link name from :oldName to :newName
 	 * @When the user renames the public link name from :oldName to :newName
 	 *
 	 * @param string $oldName
@@ -495,7 +503,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Given the user has changed the password of the public link named :name to :newPassword
 	 * @When the user changes the password of the public link named :name to :newPassword
 	 *
 	 * @param string $name
@@ -514,7 +521,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Given the user has changed the permission of the public link named :name to :newPermission
 	 * @When the user changes the permission of the public link named :name to :newPermission
 	 *
 	 * @param string $name
@@ -540,6 +546,7 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	 * @param string $date
 	 *
 	 * @return void
+	 * @throws Exception
 	 */
 	public function theUserChangeTheExpirationOfThePublicLinkNamedForTo($linkName, $name, $date) {
 		$session = $this->getSession();
@@ -574,6 +581,7 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	 * @param TableNode $emails
 	 *
 	 * @return void
+	 * @throws Exception
 	 */
 	public function theUserAddsTheFollowingEmailAddressesUsingTheWebUI(TableNode $emails) {
 		$this->featureContext->verifyTableNodeColumns($emails, ['email']);
@@ -588,6 +596,7 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	 * @param TableNode $emails
 	 *
 	 * @return void
+	 * @throws Exception
 	 */
 	public function theUserRemovesTheFollowingEmailAddressesUsingTheWebui(TableNode $emails) {
 		$this->featureContext->verifyTableNodeColumns($emails, ['email']);
@@ -615,7 +624,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 
 	/**
 	 * @When the user creates a new public link for file/folder :name using the webUI
-	 * @Given the user has created a new public link for file/folder :name using the webUI
 	 *
 	 * @param string $name
 	 *
@@ -914,7 +922,6 @@ class WebUISharingContext extends RawMinkContext implements Context {
 
 	/**
 	 * @When /^the user (declines|accepts) share "([^"]*)" offered by user "([^"]*)" using the webUI$/
-	 * @Given /^the user has (declined|accepted) share "([^"]*)" offered by user "([^"]*)" using the webUI$/
 	 *
 	 * @param string $action
 	 * @param string $share

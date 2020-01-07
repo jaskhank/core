@@ -109,31 +109,36 @@ Feature: File Upload
   @files_sharing-app-required
   Scenario: upload a file into a public share
     Given user "user1" has created folder "/simple-folder"
-    And user "user1" has logged in using the webUI
-    And the user has created a new public link for folder "simple-folder" using the webUI with
-      | permission | read-write |
+    And user "user1" has created a public link share with settings
+      | path        | /simple-folder |
+      | permissions | read,create    |
+    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     And the user uploads file "new-lorem.txt" using the webUI
     Then file "new-lorem.txt" should be listed on the webUI
+    When user "user1" logs in using the webUI
     And the content of "simple-folder/new-lorem.txt" should be the same as the local "new-lorem.txt"
 
   @files_sharing-app-required
   Scenario: upload overwriting a file into a public share
     Given user "user1" has created folder "/simple-folder"
     And user "user1" has uploaded file "filesForUpload/lorem.txt" to "/simple-folder/lorem.txt"
-    And user "user1" has logged in using the webUI
-    And the user has created a new public link for folder "simple-folder" using the webUI with
-      | permission | read-write |
+    And user "user1" has created a public link share with settings
+      | path        | /simple-folder     |
+      | permissions | read,update,create |
+    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     And the user uploads overwriting file "lorem.txt" using the webUI and retries if the file is locked
     Then file "lorem.txt" should be listed on the webUI
+    When user "user1" logs in using the webUI
     And the content of "simple-folder/lorem.txt" should be the same as the local "lorem.txt"
 
   @files_sharing-app-required
   Scenario: upload a file into files_drop share
     Given user "user1" has created folder "/simple-folder"
-    And user "user1" has logged in using the webUI
-    And the user has created a new public link for folder "simple-folder" using the webUI with
-      | permission | upload |
+    And user "user1" has created a public link share with settings
+      | path        | /simple-folder  |
+      | permissions | uploadwriteonly |
+    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     Then the user uploads file "lorem.txt" using the webUI
