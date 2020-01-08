@@ -899,7 +899,7 @@ trait Sharing {
 			$this->sharingApiVersion
 		);
 		$this->lastShareData = $this->getResponseXml();
-		if ($shareType === 'public_link'){
+		if ($shareType === 'public_link') {
 			$linkName = (string) $this->lastShareData->data[0]->name;
 			$linkUrl = (string) $this->lastShareData->data[0]->url;
 			$this->addToListOfCreatedPublicLinks($linkName, $linkUrl);
