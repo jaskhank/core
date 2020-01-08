@@ -41,7 +41,6 @@ Feature: create folders
     And user "user1" has created a public link share with settings
       | path        | /simple-empty-folder |
       | permissions | read,create          |
-    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     When the user creates a folder with the name "top-folder" using the webUI
     And the user opens folder "top-folder" using the webUI

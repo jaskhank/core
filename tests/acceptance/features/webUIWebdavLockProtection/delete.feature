@@ -19,7 +19,6 @@ Feature: Locks
     And user "brand-new-user" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | read,update,create,delete |
-    And last created public link is added to created-public-links-list
     When the public accesses the last created public link using the webUI
     And the user deletes folder "lorem.txt" using the webUI
     Then notifications should be displayed on the webUI with the text

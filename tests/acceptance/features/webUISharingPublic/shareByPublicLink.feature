@@ -260,7 +260,6 @@ Feature: Share by public link
       | path     | /simple-folder |
       | name     |  Public link   |
       | password | pass123        |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user has opened the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -276,7 +275,6 @@ Feature: Share by public link
     And user "user1" has created a public link share with settings
       | path     | /simple-folder |
       | name     |  Public link   |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user has opened the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -288,10 +286,7 @@ Feature: Share by public link
     Given parameter "shareapi_allow_public_notification" of app "core" has been set to "yes"
     And user "user1" has created folder "/simple-folder"
     And user "user1" has created a public link share of file "/simple-folder"
-#    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
-#    And the user has reloaded the current page of the webUI
-#    And the user has created a new public link for folder "simple-folder" using the webUI
     When the user browses to the shared-by-link page
     Then folder "simple-folder" should be listed on the webUI
 
@@ -302,7 +297,6 @@ Feature: Share by public link
       | path     | /simple-folder |
       | name     |  Public link   |
       | password | pass123 |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user has opened the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -316,7 +310,6 @@ Feature: Share by public link
       | path     | /simple-folder |
       | name     |  Public link   |
       | password | pass123 |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user opens the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -331,7 +324,6 @@ Feature: Share by public link
       | path        | /simple-folder |
       | name        | Public link    |
       | permissions | read,create    |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user opens the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -348,7 +340,6 @@ Feature: Share by public link
       | path        | /simple-folder |
       | name        | Public link    |
       | permissions | read           |
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     And the user opens the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -404,7 +395,6 @@ Feature: Share by public link
   Scenario: user removes the public link of a file
     Given user "user1" has uploaded file "filesForUpload/lorem.txt" to "/lorem.txt"
     And user "user1" has created a public link share of file "/lorem.txt"
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     When the user removes the public link of file "lorem.txt" using the webUI
     Then the public should see an error message "File not found" while accessing last created public link using the webUI
@@ -412,7 +402,6 @@ Feature: Share by public link
   Scenario: user cancel removes operation for the public link of a file
     Given user "user1" has uploaded file "filesForUpload/lorem.txt" to "/lorem.txt"
     And user "user1" has created a public link share of file "/lorem.txt"
-    And last created public link is added to created-public-links-list
     And user "user1" has logged in using the webUI
     When the user tries to remove the public link of file "lorem.txt" but later cancels the remove dialog using webUI
     And the public accesses the last created public link using the webUI

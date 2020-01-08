@@ -88,7 +88,6 @@ Feature: move files
     And user "user1" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | read,create,change |
-    And last created public link is added to created-public-links-list
     And the public has accessed the last created public link using the webUI
     When the user moves file "data.zip" into folder "simple-empty-folder" using the webUI
     Then file "data.zip" should not be listed on the webUI

@@ -161,7 +161,6 @@ Feature: deleting files and folders
     Given user "user1" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | read,update,create,delete     |
-    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     When the user deletes the following elements using the webUI
       | name                                  |
@@ -179,7 +178,6 @@ Feature: deleting files and folders
     Given user "user1" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | read,change     |
-    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     When the user renames the following file using the webUI
       | from-name-parts | to-name-parts   |
@@ -212,7 +210,6 @@ Feature: deleting files and folders
     Given user "user1" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | read,update,create,delete     |
-    And last created public link is added to created-public-links-list
     And the public accesses the last created public link using the webUI
     When the user batch deletes these files using the webUI
       | name                |
