@@ -44,7 +44,7 @@ Feature: User can open the details panel for any file or folder
   @comments-app-required @public_link_share-feature-required @files_sharing-app-required
   Scenario: user shares a file through public link and then the details dialog should work in a Shared by link page
     Given user "user1" has created folder "a-folder"
-    And user "user1" has created a public link share of file "a-folder" with read permissions
+    And user "user1" has created a public link share of folder "a-folder" with read permissions
     And user "user1" has logged in using the webUI
     When the user browses to the shared-by-link page
     Then folder "a-folder" should be listed on the webUI

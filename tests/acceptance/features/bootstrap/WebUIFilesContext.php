@@ -975,6 +975,27 @@ class WebUIFilesContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then following elements should be listed as uploaded items on the webUI:
+	 *
+	 * @param $table
+	 *
+	 * @return void
+	 */
+	public function theFollowingElementsShouldBeListedAsUploadedFilesOnTheWebUI($table) {
+		$expectedElements = [];
+		$table = $table->getRows();
+		foreach ($table as $row) {
+			\array_push($expectedElements, $row[0]);
+		}
+		$pageObject = $this->getCurrentPageObject();
+		$currentUploadedElements = $pageObject->getCompletelyUploadedElements();
+		Assert::assertEqualsCanonicalizing(
+			$currentUploadedElements,
+			$expectedElements
+		);
+	}
+
+	/**
 	 * @When /^the user chooses to keep the (new|existing) files in the upload dialog$/
 	 *
 	 * @param string $choice

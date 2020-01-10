@@ -295,8 +295,8 @@ Feature: Share by public link
     And user "user1" has uploaded file "filesForUpload/lorem.txt" to "/simple-folder/lorem.txt"
     And user "user1" has created a public link share with settings
       | path     | /simple-folder |
-      | name     |  Public link   |
-      | password | pass123 |
+      | name     | Public link    |
+      | password | pass123        |
     And user "user1" has logged in using the webUI
     And the user has opened the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -308,8 +308,8 @@ Feature: Share by public link
     Given user "user1" has created folder "/simple-folder"
     And user "user1" has created a public link share with settings
       | path     | /simple-folder |
-      | name     |  Public link   |
-      | password | pass123 |
+      | name     | Public link    |
+      | password | pass123        |
     And user "user1" has logged in using the webUI
     And the user opens the share dialog for folder "simple-folder"
     And the user has opened the public link share tab
@@ -441,7 +441,6 @@ Feature: Share by public link
 
   Scenario: user creates a multiple public link of a file and delete the third link
     Given user "user1" has uploaded file "filesForUpload/lorem.txt" to "/lorem.txt"
-    Given user "user1" has uploaded file "filesForUpload/lorem.txt" to "/lorem.txt"
     And user "user1" has created a public link share with settings
       | path | /lorem.txt |
       | name | first-link |
@@ -471,8 +470,8 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     And the user has created a new public link for folder "simple-folder" using the webUI with
       | permission | upload-write-without-modify |
-    And the public accesses the last created public link using the webUI
-    When the user uploads file "lorem.txt" 5 times using webUI
+    When the public accesses the last created public link using the webUI
+    And the user uploads file "lorem.txt" 5 times using webUI
     Then notifications should be displayed on the webUI with the text
       | The file lorem.txt already exists |
       | The file lorem.txt already exists |
@@ -550,8 +549,8 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     And the user has created a new public link for folder "simple-folder" using the webUI with
       | permission | upload-write-without-modify |
-    And the public accesses the last created public link using the webUI
-    When the user uploads file "lorem.txt" using the webUI
+    When the public accesses the last created public link using the webUI
+    And the user uploads file "lorem.txt" using the webUI
     Then a notification should be displayed on the webUI with the text "The file lorem.txt already exists"
     And file "lorem.txt" should be listed on the webUI
     And file "lorem (2).txt" should not be listed on the webUI
@@ -562,8 +561,8 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     And the user has created a new public link for folder "simple-folder" using the webUI with
       | permission | read-write |
-    And the public accesses the last created public link using the webUI
-    When the user uploads file "lorem.txt" keeping both new and existing files using the webUI
+    When the public accesses the last created public link using the webUI
+    And the user uploads file "lorem.txt" keeping both new and existing files using the webUI
     Then file "lorem.txt" should be listed on the webUI
     And file "lorem (2).txt" should be listed on the webUI
 
@@ -574,7 +573,7 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     And the user has created a new public link for folder "simple-folder" using the webUI with
       | permission | read-write |
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     Then it should be possible to delete file "lorem.txt" using the webUI
     When the user browses to the files page
     And the user opens the share dialog for folder "simple-folder"
@@ -590,7 +589,7 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     And the user has created a new public link for folder "simple-folder" using the webUI with
       | permission | upload-write-without-modify |
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     Then the option to delete file "lorem.txt" should not be available on the webUI
     When the user browses to the files page
     And the user opens the share dialog for folder "simple-folder"
@@ -665,7 +664,7 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     When the user creates a new public link for folder "simple-folder" using the webUI
     And the user logs out of the webUI
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     Then file "lorem.txt" should be listed on the webUI
     When the public downloads file "lorem.txt" using the webUI
     Then the downloaded content should be "original content"
@@ -675,7 +674,7 @@ Feature: Share by public link
     And user "user1" has logged in using the webUI
     When the user creates a new public link for file "lorem.txt" using the webUI
     And the user logs out of the webUI
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     Then the text preview of the public link should contain "original content"
     And all the links to download the public share should be the same
 

@@ -14,7 +14,7 @@ Feature: Sharing files and folders with internal users
       | user2    |
     And user "user2" has shared folder "simple-folder" with user "user1"
     And user "user2" has shared file "testimage.jpg" with user "user1"
-    And user "user1" has logged in using the webUI
+    When user "user1" logs in using the webUI
     Then folder "simple-folder (2)" should be listed on the webUI
     And folder "simple-folder (2)" should be marked as shared by "User Two" on the webUI
     And file "testimage (2).jpg" should be listed on the webUI
@@ -112,7 +112,7 @@ Feature: Sharing files and folders with internal users
     And user "user2" has moved file "simple-folder" to "new-simple-folder"
     And user "user2" has shared file "ipsum.txt" with user "user1"
     And user "user2" has shared file "new-simple-folder" with user "user1"
-    And user "user1" has logged in using the webUI
+    When user "user1" logs in using the webUI
     And the user browses to the shared-with-you page
     Then file "ipsum.txt" should be listed on the webUI
     And folder "new-simple-folder" should be listed on the webUI

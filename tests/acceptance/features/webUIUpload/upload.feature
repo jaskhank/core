@@ -112,7 +112,7 @@ Feature: File Upload
     And user "user1" has created a public link share with settings
       | path        | /simple-folder |
       | permissions | read,create    |
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     And the user uploads file "new-lorem.txt" using the webUI
     Then file "new-lorem.txt" should be listed on the webUI
     When user "user1" logs in using the webUI
@@ -125,7 +125,7 @@ Feature: File Upload
     And user "user1" has created a public link share with settings
       | path        | /simple-folder     |
       | permissions | read,update,create |
-    And the public accesses the last created public link using the webUI
+    When the public accesses the last created public link using the webUI
     And the user uploads overwriting file "lorem.txt" using the webUI and retries if the file is locked
     Then file "lorem.txt" should be listed on the webUI
     When user "user1" logs in using the webUI
@@ -137,5 +137,9 @@ Feature: File Upload
     And user "user1" has created a public link share with settings
       | path        | /simple-folder  |
       | permissions | uploadwriteonly |
-    And the public accesses the last created public link using the webUI
-    Then the user uploads file "lorem.txt" using the webUI
+    When the public accesses the last created public link using the webUI
+    And the user uploads file "lorem.txt" using the webUI
+    And the user uploads file "lorem-big.txt" using the webUI
+    Then following elements should be listed as uploaded items on the webUI:
+      | lorem.txt     |
+      | lorem-big.txt |

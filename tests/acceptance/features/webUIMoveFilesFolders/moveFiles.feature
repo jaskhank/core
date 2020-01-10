@@ -80,9 +80,6 @@ Feature: move files
       | question?       | question?           |
       | &and#hash       | &and#hash           |
 
-
-#  has created a new public link for folder
-
   @files_sharing-app-required
   Scenario: move files on a public share
     And user "user1" has created a public link share with settings
