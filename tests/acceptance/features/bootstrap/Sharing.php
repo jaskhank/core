@@ -1121,8 +1121,9 @@ trait Sharing {
 
 		$fullUrl = $this->getBaseUrl()
 			. "/ocs/v{$this->ocsApiVersion}.php/apps/files_sharing/api/v{$this->sharingApiVersion}/shares?path=$filepath";
+		$headers = ['OCS-APIREQUEST' => 'true'];
 		$this->response = HttpRequestHelper::get(
-			$fullUrl, $user1, $this->getPasswordForUser($user1)
+			$fullUrl, $user1, $this->getPasswordForUser($user1), $headers
 		);
 		if ($getShareData && $this->isUserOrGroupInSharedData($user2, $permissions)) {
 			return;
@@ -1291,8 +1292,9 @@ trait Sharing {
 	) {
 		$fullUrl = $this->getBaseUrl()
 			. "/ocs/v{$this->ocsApiVersion}.php/apps/files_sharing/api/v{$this->sharingApiVersion}/shares?path=$filepath";
+		$headers = ['OCS-APIREQUEST' => 'true'];
 		$this->response = HttpRequestHelper::get(
-			$fullUrl, $user, $this->getPasswordForUser($user)
+			$fullUrl, $user, $this->getPasswordForUser($user), $headers
 		);
 		if ($getShareData && $this->isUserOrGroupInSharedData($group, $permissions)) {
 			return;
