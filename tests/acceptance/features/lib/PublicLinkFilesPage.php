@@ -504,7 +504,7 @@ class PublicLinkFilesPage extends FilesPageBasic {
 			"is found NULL"
 		);
 		$elements = $this->findAll("xpath", $this->uploadedElementsXpath);
-		$uploadedElements= [];
+		$uploadedElements = [];
 		foreach ($elements as $element) {
 			\array_push($uploadedElements, $element->getText());
 		}
